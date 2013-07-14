@@ -15,9 +15,8 @@ FastTime::App.controllers  do
   #   'Maps to url '/foo/#{params[:id]}''
   # end
 
-  # get '/example' do
-  #   'Hello world!'
-  # end
-  
+  get '/example' do
+    'Hello world!'
+  end
 
 end
