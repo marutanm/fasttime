@@ -1,0 +1,9 @@
+---
+:orm: mongoid
+:test: minitest
+:mock: none
+:script: jquery
+:renderer: haml
+:stylesheet: scss
+:namespace: FastTime
+:migration_format: number
