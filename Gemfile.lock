@@ -9,6 +9,7 @@ GEM
       multi_json (~> 1.0)
     builder (3.0.4)
     coderay (1.0.9)
+    database_cleaner (1.0.1)
     ffi (1.9.0)
     formatador (0.2.4)
     guard (1.8.1)
@@ -111,6 +112,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  database_cleaner
   guard-minitest
   haml
   minitest (~> 2.6.0)

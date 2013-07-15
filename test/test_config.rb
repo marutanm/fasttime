@@ -1,6 +1,8 @@
 PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
 require File.expand_path('../../config/boot', __FILE__)
 
+require 'database_cleaner'
+
 class MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
@@ -18,3 +20,14 @@ class MiniTest::Unit::TestCase
     @app ||= Padrino.application
   end
 end
+
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+
+  after :each do
+    DatabaseCleaner.clean
+  end
+end
+
