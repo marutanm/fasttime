@@ -1,13 +1,24 @@
 FastTime::App.controllers  do
 
+  before { @now = Time.now }
+
+  get :index do
+    redirect "/list/#{@now.year}/#{@now.month}"
+  end
+
+  get :list, :with => [:year, :month] do
+    logger.info "#{params[:year]}/#{params[:month]}"
+
+    200
+  end
+
   post :time do
-    now = Time.now
-    today = now.to_date
+    today = @now.to_date
     tomorrow = today + 1.day
 
     stamp = Stamp.between(created_at: today..tomorrow).first 
     stamp ||= Stamp.create
-    stamp.update_attribute(:updated_at, now)
+    stamp.update_attribute(:updated_at, @now)
 
     200
   end
