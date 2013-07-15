@@ -1,22 +1,15 @@
 FastTime::App.controllers  do
-  
-  # get :index, :map => '/foo/bar' do
-  #   session[:foo] = 'bar'
-  #   render 'index'
-  # end
 
-  # get :sample, :map => '/sample/url', :provides => [:any, :js] do
-  #   case content_type
-  #     when :js then ...
-  #     else ...
-  # end
+  post :time do
+    now = Time.now
+    today = now.to_date
+    tomorrow = today + 1.day
 
-  # get :foo, :with => :id do
-  #   'Maps to url '/foo/#{params[:id]}''
-  # end
+    stamp = Stamp.between(created_at: today..tomorrow).first 
+    stamp ||= Stamp.create
+    stamp.update_attribute(:updated_at, now)
 
-  get '/example' do
-    'Hello world!'
+    200
   end
 
 end
