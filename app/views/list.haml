@@ -1,4 +1,6 @@
 %h1= "#{params[:year]}/#{params[:month]}"
 
 - (@first_day..@last_day).each do |date|
-  %div= date.day
+  .span1{:class => [date.saturday? && "palette-peter-river", |
+                   date.sunday? && "palette-pomegranate"]}
+    %div= date.day
