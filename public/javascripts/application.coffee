@@ -1,0 +1,4 @@
+$ ->
+  $('#stamp').click ->
+    $.post('/time')
+
