@@ -1,5 +1,6 @@
 module FastTime
   class App < Padrino::Application
+    register CoffeeInitializer
     register ScssInitializer
     register Padrino::Rendering
     register Padrino::Mailer

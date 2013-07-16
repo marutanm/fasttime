@@ -14,6 +14,8 @@ source 'https://rubygems.org'
 gem 'rake'
 
 # Component requirements
+gem 'rack-coffee', :require => 'rack/coffee'
+gem 'coffee-script'
 gem 'sass'
 gem 'haml'
 gem 'mongoid', '~>3.0.0'
