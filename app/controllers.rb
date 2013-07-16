@@ -1,6 +1,7 @@
 FastTime::App.controllers  do
 
   before { @now = Time.now }
+  layout :default
 
   get :index do
     redirect "/list/#{@now.year}/#{@now.month}"
