@@ -1,0 +1,4 @@
+%h1= "#{params[:year]}/#{params[:month]}"
+
+- @stamps.each do |stamp|
+  %div= stamp.created_at

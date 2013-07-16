@@ -9,7 +9,10 @@ FastTime::App.controllers  do
   get :list, :with => [:year, :month] do
     logger.info "#{params[:year]}/#{params[:month]}"
 
-    200
+    first_day = Time.new params[:year], params[:month], 1
+    @stamps = Stamp.between(created_at: first_day..(first_day + 1.month))
+
+    render :list
   end
 
   post :time do
