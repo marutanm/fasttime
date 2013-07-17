@@ -11,7 +11,9 @@ FastTime::App.controllers  do
 
     @first_day = Date.new params[:year].to_i, params[:month].to_i, 1
     @last_day = Date.new params[:year].to_i, params[:month].to_i, -1
-    @stamps = Stamp.between(created_at: @first_day..@last_day)
+    stamps = Stamp.between(created_at: @first_day..@last_day)
+
+    @stamps = stamps.inject({}){|h, s| h[s.created_at.day] = s; h}
 
     render :list
   end
@@ -20,7 +22,7 @@ FastTime::App.controllers  do
     today = @now.to_date
     tomorrow = today + 1.day
 
-    stamp = Stamp.between(created_at: today..tomorrow).first 
+    stamp = Stamp.between(created_at: today..tomorrow).first
     stamp ||= Stamp.create
     stamp.update_attribute(:updated_at, @now)
 

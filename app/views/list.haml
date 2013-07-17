@@ -4,4 +4,7 @@
   - (@first_day..@last_day).each do |date|
     %tr{:class => [date.saturday? && "palette-peter-river", |
                      date.sunday? && "palette-pomegranate"]}
-      %td= date.day
+      - day = date.day
+      %td= day
+      %td= @stamps[day].created_at.strftime('%H:%M') rescue '-'
+      %td= @stamps[day].updated_at.strftime('%H:%M') rescue '-'
