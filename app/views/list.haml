@@ -5,6 +5,12 @@
     %tr{:class => [date.saturday? && "palette-peter-river", |
                      date.sunday? && "palette-pomegranate"]}
       - day = date.day
+      - start_time = @stamps[day].created_at rescue 0
+      - end_time = @stamps[day].updated_at rescue 0
+      - working_time = (end_time - start_time).to_i
+      - hour, mod = working_time.divmod 1.hour
+      - min, sec = mod.divmod 1.minute
       %td= day
-      %td= @stamps[day].created_at.strftime('%H:%M') rescue '-'
-      %td= @stamps[day].updated_at.strftime('%H:%M') rescue '-'
+      %td= start_time.strftime('%H:%M') rescue '-'
+      %td= end_time.strftime('%H:%M') rescue '-'
+      %td= if working_time > 0 then format("%02d:%02d", hour, min) else '-' end
