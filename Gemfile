@@ -12,6 +12,7 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
+gem "holiday_jp", "~> 0.3.1"
 
 # Component requirements
 gem 'rack-coffee', :require => 'rack/coffee'

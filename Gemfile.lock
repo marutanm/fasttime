@@ -29,6 +29,7 @@ GEM
       minitest (>= 2.1)
     haml (4.0.3)
       tilt
+    holiday_jp (0.3.1)
     http_router (0.11.0)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -125,6 +126,7 @@ DEPENDENCIES
   database_cleaner
   guard-minitest
   haml
+  holiday_jp (~> 0.3.1)
   minitest (~> 2.6.0)
   mongoid (~> 3.0.0)
   padrino (= 0.11.2)
