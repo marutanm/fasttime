@@ -1,8 +1,12 @@
 %h1= "#{params[:year]}/#{params[:month]}"
 
-%h2= "#{(@total_time/1.hour).to_i}:#{(@total_time%1.hour/1.minute).to_i}"
-.progress
-  .bar{:style=>"width:#{@total_time/(weekdays()*8.hours)*100}%;"}
+- time_to_work = weekdays * 8.hours
+%h2= "#{format("%.2f", @total_time/1.hour)} of #{(time_to_work/1.hour).to_i} hours worked"
+
+- progress = @total_time/time_to_work*100
+.progress{:title => "#{format("%.1f", progress)}%"}
+  .bar{:style=>"width:#{progress}%;"}
+
 %table
   - (@first_day..@last_day).each do |date|
     %tr{:class => [date.saturday? && "palette palette-peter-river", |
