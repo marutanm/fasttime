@@ -14,6 +14,7 @@ FastTime::App.controllers  do
     stamps = Stamp.between(created_at: @first_day..@last_day)
 
     @stamps = stamps.inject({}){|h, s| h[s.created_at.day] = s; h}
+    @total_time = stamps.inject(0){|total, s| total + s.working_time }
 
     render :list
   end
