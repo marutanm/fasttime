@@ -34,6 +34,11 @@ Bundler.require(:default, PADRINO_ENV)
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  Date.class_eval do
+    def holiday?
+      HolidayJp.holiday? self
+    end
+  end
 end
 
 ##

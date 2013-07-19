@@ -12,7 +12,7 @@ FastTime::App.helpers do
     days = (first_day..last_day).to_a
     days.delete_if {|day| day.saturday?}
     days.delete_if {|day| day.sunday?}
-    days.delete_if {|day| HolidayJp.holiday? day}
+    days.delete_if {|day| day.holiday?}
     days.count
   end
 end

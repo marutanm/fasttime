@@ -10,7 +10,7 @@
 %table
   - (@first_day..@last_day).each do |date|
     %tr{:class => [date.saturday? && "palette palette-peter-river", |
-                     date.sunday? && "palette palette-pomegranate"]}
+                     (date.sunday? or date.holiday?)&& "palette palette-pomegranate"]}
       - day = date.day
       - start_time = @stamps[day].created_at rescue 0
       - end_time = @stamps[day].updated_at rescue 0
