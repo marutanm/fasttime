@@ -7,7 +7,7 @@
 .progress{:title => "#{format("%.1f", progress)}%"}
   .bar{:style=>"width:#{progress}%;"}
 
-%table
+%table.table.table-condensed
   - (@first_day..@last_day).each do |date|
     %tr{:class => [date.saturday? && "palette palette-peter-river", |
                      (date.sunday? or date.holiday?)&& "palette palette-pomegranate"]}
