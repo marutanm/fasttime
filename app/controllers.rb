@@ -4,7 +4,24 @@ FastTime::App.controllers  do
   layout :default
 
   get :index do
-    redirect "/list/#{@now.year}/#{@now.month}"
+    redirect "/list/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
+
+    render :index, layout: false
+  end
+
+  get :login do
+    env['warden'].authenticate!
+
+    user = env['warden'].user
+    logger.info user
+
+    redirect '/'
+  end
+
+  get :logout do
+    env['warden'].logout
+
+    redirect '/'
   end
 
   get :list, :with => [:year, :month] do

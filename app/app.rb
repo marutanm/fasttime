@@ -8,6 +8,12 @@ module FastTime
 
     enable :sessions
 
+    set :login_page, "/login"
+
+    use Warden::Manager do |config|
+      config.default_strategies :github
+    end
+
     ##
     # Caching support
     #
