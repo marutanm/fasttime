@@ -13,6 +13,7 @@ source 'https://rubygems.org'
 # Project requirements
 gem 'rake'
 gem "holiday_jp", "~> 0.3.1"
+gem "warden-github", "~> 0.14.0"
 
 # Component requirements
 gem 'rack-coffee', :require => 'rack/coffee'

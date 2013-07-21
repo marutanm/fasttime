@@ -1,10 +1,35 @@
 FastTime::App.controllers  do
 
-  before { @now = Time.now }
   layout :default
+  before do
+    @now = Time.now
+    if env['warden'].authenticated?
+      @current_user = User.find_by(github_id: env['warden'].user.id)
+    end
+  end
 
   get :index do
-    redirect "/list/#{@now.year}/#{@now.month}"
+    redirect "/list/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
+
+    render :index
+  end
+
+  get :login do
+    env['warden'].authenticate!
+
+    user = env['warden'].user
+    @current_user = User.find_or_create_by(github_id: user.id) do |u|
+      u.name = user.login
+      u.gravatar_id = user.gravatar_id
+    end
+
+    redirect '/'
+  end
+
+  get :logout do
+    env['warden'].logout
+
+    redirect '/'
   end
 
   get :list, :with => [:year, :month] do
