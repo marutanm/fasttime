@@ -6,8 +6,6 @@ module FastTime
     register Padrino::Mailer
     register Padrino::Helpers
 
-    enable :sessions
-
     set :login_page, "/login"
 
     use Warden::Manager do |config|

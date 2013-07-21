@@ -1,7 +1,12 @@
 FastTime::App.controllers  do
 
-  before { @now = Time.now }
   layout :default
+  before do
+    @now = Time.now
+    if env['warden'].authenticated?
+      @current_user = User.find_by(github_id: env['warden'].user.id)
+    end
+  end
 
   get :index do
     redirect "/list/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
