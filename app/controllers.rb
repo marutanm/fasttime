@@ -11,7 +11,7 @@ FastTime::App.controllers  do
   get :index do
     redirect "/list/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
 
-    render :index, layout: false
+    render :index
   end
 
   get :login do

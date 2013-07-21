@@ -12,12 +12,13 @@
           - else
             %li= link_to 'login', :login
   .container
-    .row
-      .span4
-      .span4
-        = button_tag "I'm here", |
-          :class => 'btn btn-large btn-block btn-primary', |
-          :id => 'stamp'
-      .span4
+    - if env['warden'].authenticated?
+      .row
+        .span4
+        .span4
+          = button_tag "I'm here", |
+            :class => 'btn btn-large btn-block btn-primary', |
+            :id => 'stamp'
+        .span4
     .row
       = yield
