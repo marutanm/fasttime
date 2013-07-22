@@ -33,6 +33,7 @@ FastTime::App.controllers  do
   end
 
   get :list, :with => [:year, :month] do
+    redirect url(:index) unless env['warden'].authenticated?
 
     @first_day = Date.new params[:year].to_i, params[:month].to_i, 1
     @last_day = Date.new params[:year].to_i, params[:month].to_i, -1
