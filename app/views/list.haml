@@ -9,8 +9,10 @@
 
 %table.table.table-condensed
   - (@first_day..@last_day).each do |date|
-    %tr{:class => [date.saturday? && "palette palette-peter-river", |
-                     (date.sunday? or date.holiday?)&& "palette palette-pomegranate"]}
+    - tr_class = "palette palette-peter-river" if date.saturday?
+    - tr_class = "palette palette-pomegranate" if date.sunday? or date.holiday?
+    - tr_id    = "today" if date.day == @now.to_date.day
+    %tr{class: tr_class, id: tr_id}
       - day = date.day
       - start_time = @stamps[day].created_at rescue 0
       - end_time = @stamps[day].updated_at rescue 0
@@ -18,6 +20,6 @@
       - hour, mod = working_time.divmod 1.hour
       - min, sec = mod.divmod 1.minute
       %td= day
-      %td= start_time.strftime('%H:%M') rescue '-'
-      %td= end_time.strftime('%H:%M') rescue '-'
-      %td= if working_time > 0 then format("%02d:%02d", hour, min) else '-' end
+      %td.start_time= start_time.strftime('%H:%M') rescue '-'
+      %td.end_time= end_time.strftime('%H:%M') rescue '-'
+      %td.working_time= if working_time > 0 then format("%02d:%02d", hour, min) else '-' end
