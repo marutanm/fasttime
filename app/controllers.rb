@@ -53,7 +53,15 @@ FastTime::App.controllers  do
     stamp ||= @current_user.stamps.create
     stamp.update_attribute(:updated_at, @now)
 
-    200
+    working_time = '-'
+    if stamp.working_time > 0
+      hour, mod = stamp.working_time.divmod 1.hour
+      min, sec = mod.divmod 1.minute
+      working_time = format("%02d:%02d", hour, min)
+    end
+    { start_time:   stamp.created_at.strftime('%H:%M'),
+      end_time:     stamp.updated_at.strftime('%H:%M'),
+      working_time: working_time }.to_json
   end
 
 end
