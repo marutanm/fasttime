@@ -4,7 +4,7 @@
 %h2= "#{format("%.2f", @total_time/1.hour)} of #{(time_to_work/1.hour).to_i} hours worked"
 
 - working_time_today = @stamps[@now.day].working_time rescue 0
-- progress = (time_to_work-@total_time+working_time_today)/time_to_work*100
+- progress = (time_to_work-@total_time-working_time_today)/time_to_work*100
 .progress{:title => "#{format("%.1f", progress)}%"}
   .bar{:style=>"width:#{progress}%;"}
   .bar.bar-info{:style=>"width:#{working_time_today/time_to_work*100}%;"}
