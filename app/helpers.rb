@@ -15,6 +15,17 @@ module AppHelper
     days.delete_if {|day| day.holiday?}
     days.count
   end
+
+  def format_time(time)
+    hour, mod = time.divmod 1.hour
+    min = mod / 1.minute
+    if time > 0 then
+      format("%02d:%02d", hour, min)
+    else
+      '-'
+    end
+  end
+
 end
 
 FastTime::App.helpers AppHelper
