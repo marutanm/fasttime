@@ -1,6 +1,6 @@
 # Helper methods defined here can be accessed in any controller or view in the application
 
-FastTime::App.helpers do
+module AppHelper
   def weekdays(year = nil, month = nil)
     now = Time.now
     year = now.year unless year
@@ -16,3 +16,5 @@ FastTime::App.helpers do
     days.count
   end
 end
+
+FastTime::App.helpers AppHelper
