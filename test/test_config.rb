@@ -1,5 +1,6 @@
 PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
 require File.expand_path('../../config/boot', __FILE__)
+require File.expand_path('../../app/helpers.rb', __FILE__)
 
 require 'database_cleaner'
 

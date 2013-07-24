@@ -1,6 +1,6 @@
 # Helper methods defined here can be accessed in any controller or view in the application
 
-FastTime::App.helpers do
+module AppHelper
   def weekdays(year = nil, month = nil)
     now = Time.now
     year = now.year unless year
@@ -15,4 +15,17 @@ FastTime::App.helpers do
     days.delete_if {|day| day.holiday?}
     days.count
   end
+
+  def format_time(time)
+    hour, mod = time.divmod 1.hour
+    min = mod / 1.minute
+    if time > 0 then
+      format("%02d:%02d", hour, min)
+    else
+      '-'
+    end
+  end
+
 end
+
+FastTime::App.helpers AppHelper

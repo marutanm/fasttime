@@ -24,4 +24,4 @@
       %td= day
       %td.start_time= start_time.strftime('%H:%M') rescue '-'
       %td.end_time= end_time.strftime('%H:%M') rescue '-'
-      %td.working_time= if working_time > 0 then format("%02d:%02d", hour, min) else '-' end
+      %td.working_time= format_time(working_time)
