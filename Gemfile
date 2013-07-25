@@ -14,6 +14,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem "holiday_jp", "~> 0.3.1"
 gem "warden-github", "~> 0.14.0"
+gem 'terminal-notifier-guard'
 
 # Component requirements
 gem 'rack-coffee', :require => 'rack/coffee'
