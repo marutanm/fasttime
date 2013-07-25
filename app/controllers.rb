@@ -8,12 +8,6 @@ FastTime::App.controllers  do
     end
   end
 
-  get :index do
-    redirect "/list/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
-
-    render :index
-  end
-
   get :login do
     env['warden'].authenticate!
 
@@ -32,7 +26,13 @@ FastTime::App.controllers  do
     redirect '/'
   end
 
-  get :list, :with => [:year, :month] do
+  get :index do
+    redirect "/#{@now.year}/#{@now.month}" if env['warden'].authenticated?
+
+    render :index
+  end
+
+  get :index, :with => [:year, :month] do
     redirect url(:index) unless env['warden'].authenticated?
 
     @first_day = Date.new params[:year].to_i, params[:month].to_i, 1
