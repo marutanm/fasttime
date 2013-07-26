@@ -17,6 +17,9 @@ GEM
     database_cleaner (1.0.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fabrication (2.7.2)
+    faker (1.1.2)
+      i18n (~> 0.5)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
@@ -145,6 +148,8 @@ PLATFORMS
 DEPENDENCIES
   coffee-script
   database_cleaner
+  fabrication
+  faker
   guard-minitest
   haml
   holiday_jp (~> 0.3.1)

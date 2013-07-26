@@ -1,24 +1,55 @@
 require File.expand_path(File.dirname(__FILE__) + '/test_config.rb')
 
+include Warden::Test::Helpers
+
+def login
+  user = Fabricate(:user)
+  user.id = user.github_id
+  login_as user
+end
+
 describe "Controllers" do
+
+  after{ Warden.test_reset! }
 
   describe "get /" do
     before { get '/' }
 
-    it "redirect to list of current year/month" do
+    it "show Index" do
       assert_equal 200, last_response.status
+    end
+
+    describe "logged in" do
+      before do
+        login
+        get '/'
+      end
+
+      it "redirect to list of current year/month" do
+        assert_equal 302, last_response.status
+      end
     end
   end
 
   describe "get /list/[:year]/[:month]" do
-    before { skip }
+    let(:now) { Time.now }
     before do
-      now = Time.now
       get "/list/#{now.year}/#{now.month}"
     end
 
-    it "Success" do
-      assert last_response.ok?
+    it "redirect" do
+      assert_equal 302, last_response.status
+    end
+
+    describe "logged in" do
+      before do
+        login
+        get "/list/#{now.year}/#{now.month}"
+      end
+
+      it "redirect to list of current year/month" do
+        assert_equal 200, last_response.status
+      end
     end
   end
 
