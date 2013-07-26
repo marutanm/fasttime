@@ -1,12 +1,28 @@
 require File.expand_path(File.dirname(__FILE__) + '/test_config.rb')
 
+include Warden::Test::Helpers
+
 describe "Controllers" do
+
+  after{ Warden.test_reset! }
 
   describe "get /" do
     before { get '/' }
 
     it "redirect to list of current year/month" do
       assert_equal 200, last_response.status
+    end
+
+    describe "logged in" do
+      let(:user) { Fabricate :user }
+      before do
+        login_as user
+        get '/'
+      end
+
+      it "redirect to list of current year/month" do
+        assert_equal 302, last_response.status
+      end
     end
   end
 
