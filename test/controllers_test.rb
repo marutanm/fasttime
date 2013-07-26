@@ -31,10 +31,10 @@ describe "Controllers" do
     end
   end
 
-  describe "get /list/[:year]/[:month]" do
+  describe "get /[:year]/[:month]" do
     let(:now) { Time.now }
     before do
-      get "/list/#{now.year}/#{now.month}"
+      get "/#{now.year}/#{now.month}"
     end
 
     it "redirect" do
@@ -44,7 +44,7 @@ describe "Controllers" do
     describe "logged in" do
       before do
         login
-        get "/list/#{now.year}/#{now.month}"
+        get "/#{now.year}/#{now.month}"
       end
 
       it "redirect to list of current year/month" do
