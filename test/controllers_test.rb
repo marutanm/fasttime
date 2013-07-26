@@ -54,11 +54,21 @@ describe "Controllers" do
   end
 
   describe "post /time" do
-    before { skip }
     before { post :time }
 
-    it "create one instance of Stamp" do
-      assert last_response.ok?
+    it "return 403 without logged in" do
+      assert_equal 403, last_response.status
+    end
+
+    describe "logged in" do
+      before do
+        login
+        post "/time"
+      end
+
+      it "redirect to list of current year/month" do
+        assert_equal 200, last_response.status
+      end
     end
   end
 

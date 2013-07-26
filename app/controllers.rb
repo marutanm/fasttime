@@ -46,6 +46,8 @@ FastTime::App.controllers  do
   end
 
   post :time do
+    return 403 unless env['warden'].authenticated?
+
     today = @now.to_date
     tomorrow = today + 1.day
 
