@@ -3,11 +3,9 @@
 - time_to_work = weekdays * 8.hours
 %h2= "#{format("%.2f", @total_time/1.hour)} of #{(time_to_work/1.hour).to_i} hours worked"
 
-- working_time_today = @stamps[@now.day].working_time rescue 0
-- progress = (time_to_work-@total_time-working_time_today)/time_to_work*100
-.progress{:title => "#{format("%.1f", progress)}%"}
-  .bar{:style=>"width:#{progress}%;"}
-  .bar.bar-info{:style=>"width:#{working_time_today/time_to_work*100}%;"}
+.progress{:title => "#{format("%.1f", @progress.total)}%"}
+  .bar{:style=>"width:#{@progress.until_yesterday}%;"}
+  .bar.bar-info{:style=>"width:#{@progress.today}%;"}
 
 %table.table.table-condensed
   - (@first_day..@last_day).each do |date|
@@ -19,8 +17,6 @@
       - start_time = @stamps[day].created_at rescue 0
       - end_time = @stamps[day].updated_at rescue 0
       - working_time = (end_time - start_time).to_i
-      - hour, mod = working_time.divmod 1.hour
-      - min, sec = mod.divmod 1.minute
       %td= day
       %td.start_time= start_time.strftime('%H:%M') rescue '-'
       %td.end_time= end_time.strftime('%H:%M') rescue '-'

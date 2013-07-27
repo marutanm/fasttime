@@ -42,6 +42,14 @@ FastTime::App.controllers  do
     @stamps = stamps.inject({}){|h, s| h[s.created_at.day] = s; h}
     @total_time = stamps.inject(0){|total, s| total + s.working_time }
 
+    working_time_today = @stamps[@now.day].working_time rescue 0
+    time_to_work = weekdays * 8.hours
+    progress = {}
+    progress[:until_yesterday] = (time_to_work-@total_time-working_time_today)/time_to_work*100
+    progress[:today] = working_time_today/time_to_work*100
+    progress[:total] = progress[:until_yesterday] + progress[:today]
+    @progress = OpenStruct.new progress
+
     render :list
   end
 
