@@ -5,6 +5,7 @@ require File.expand_path('../../app/helpers.rb', __FILE__)
 require 'database_cleaner'
 require 'fabrication'
 require 'faker'
+require 'timecop'
 
 class MiniTest::Unit::TestCase
   include Rack::Test::Methods

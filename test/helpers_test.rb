@@ -23,4 +23,27 @@ describe AppHelper do
     end
   end
 
+  describe "left_time" do
+    let(:stamps){ {} }
+    before do
+      # 2013/6: work 20 days(160 hours)
+      t = Time.local(2013, 6, 10, 10, 0, 0)
+      Timecop.travel t
+
+      (1..9).each do |day|
+        stamps[day] = OpenStruct.new({working_time: 8.hours})
+      end
+      stamps[10] = OpenStruct.new(working_time: 4.hours)
+    end
+    after do
+      Timecop.return
+    end
+    subject { helper.left_time stamps }
+
+    { until_yesterday:55, today:2.5, total:52.5 }.each do |method, value|
+      it { subject.must_respond_to method }
+      it { subject.send(method).must_equal value }
+    end
+  end
+
 end

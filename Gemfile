@@ -30,6 +30,7 @@ gem 'guard-minitest', :require => false, :group => "test"
 gem 'database_cleaner', :require => false, :group => "test"
 gem "fabrication", :require => false, :group => "test"
 gem "faker", :require => false, :group => "test"
+gem "timecop", :require => false, :group => "test"
 
 # Padrino Stable Gem
 gem 'padrino', '0.11.2'

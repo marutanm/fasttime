@@ -26,6 +26,20 @@ module AppHelper
     end
   end
 
+  def left_time(stamps)
+    total_time = stamps.values.inject(0){|total, s| total + s.working_time }.to_f
+
+    now = Time.now
+    working_time_today = stamps[now.day].working_time.to_f rescue 0
+    time_to_work = (weekdays * 8.hours).to_f
+
+    left = {}
+    left[:total] = (time_to_work - total_time) / time_to_work * 100
+    left[:today] = working_time_today / time_to_work * 100
+    left[:until_yesterday] = left[:total] + left[:today]
+    OpenStruct.new left
+  end
+
 end
 
 FastTime::App.helpers AppHelper
