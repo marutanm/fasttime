@@ -3,9 +3,9 @@
 - time_to_work = weekdays * 8.hours
 %h2= "#{format("%.2f", @total_time/1.hour)} of #{(time_to_work/1.hour).to_i} hours worked"
 
-.progress{:title => "#{format("%.1f", @progress.total)}%"}
-  .bar{:style=>"width:#{@progress.until_yesterday}%;"}
-  .bar.bar-info{:style=>"width:#{@progress.today}%;"}
+.progress{:title => "#{format("%.1f", @left_time.total)}%"}
+  .bar{:style=>"width:#{@left_time.total}%;"}
+  .bar.bar-info{:style=>"width:#{@left_time.today}%;"}
 
 %table.table.table-condensed
   - (@first_day..@last_day).each do |date|
