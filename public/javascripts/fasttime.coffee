@@ -6,13 +6,15 @@ $ ->
         .parent().children('.working_time').html(data.working_time)
     , 'json'
 
+  timerId = null
   $('#tracking').find('.switch-right').click ->
     console.log 'start tracking'
     working()
-    setInterval(working, 60000)
+    timerId = setInterval(working, 60000)
     @
   .parent().find('.switch-left').click ->
     console.log 'stop tracking'
+    clearInterval timerId
     @
 
 
