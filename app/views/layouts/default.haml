@@ -14,13 +14,6 @@
   .container
     - if env['warden'].authenticated?
       .row
-        .span4
-        .span4
-          = button_tag "I'm here", |
-            :class => 'btn btn-large btn-block btn-primary', |
-            :id => 'stamp'
-        .span4
-    .row
-      %input{ :type =>"checkbox", :'data-toggle' => "switch" }
+        %input{ :type =>"checkbox", :'data-toggle' => "switch" }
     .row
       = yield
