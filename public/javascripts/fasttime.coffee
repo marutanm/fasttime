@@ -8,6 +8,8 @@ $ ->
 
   $('#tracking').find('.switch-right').click ->
     console.log 'start tracking'
+    working()
+    setInterval(working, 60000)
     @
   .parent().find('.switch-left').click ->
     console.log 'stop tracking'
