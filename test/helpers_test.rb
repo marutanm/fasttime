@@ -40,7 +40,7 @@ describe AppHelper do
     end
     subject { helper.left_time stamps }
 
-    { today:2.5, total:52.5 }.each do |method, value|
+    { today:2.5, total:52.5, formated:'84:00' }.each do |method, value|
       it { subject.must_respond_to method }
       it { subject.send(method).must_equal value }
     end

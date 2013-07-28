@@ -1,7 +1,6 @@
 %h1= "#{params[:year]}/#{params[:month]}"
 
-- time_to_work = weekdays * 8.hours
-%h2= "#{format("%.2f", @total_time/1.hour)} of #{(time_to_work/1.hour).to_i} hours worked"
+%h2= @left_time.formated
 
 .progress{:title => "#{format("%.1f", @left_time.total)}%"}
   .bar{:style=>"width:#{@left_time.total}%;"}

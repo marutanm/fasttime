@@ -36,6 +36,7 @@ module AppHelper
     left = {}
     left[:total] = (time_to_work - total_time) / time_to_work * 100
     left[:today] = working_time_today / time_to_work * 100
+    left[:formated] = format_time(time_to_work - total_time)
     OpenStruct.new left
   end
 
