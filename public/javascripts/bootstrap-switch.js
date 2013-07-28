@@ -1,0 +1,1 @@
+../../Flat-UI/js/bootstrap-switch.js
