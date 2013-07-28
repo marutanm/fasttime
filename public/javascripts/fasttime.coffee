@@ -8,12 +8,10 @@ $ ->
 
   timerId = null
   $('#tracking').find('.switch-right').click ->
-    console.log 'start tracking'
     working()
     timerId = setInterval(working, 60000)
     @
   .parent().find('.switch-left').click ->
-    console.log 'stop tracking'
     clearInterval timerId
     @
 
