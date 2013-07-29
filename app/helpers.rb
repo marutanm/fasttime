@@ -40,6 +40,11 @@ module AppHelper
     OpenStruct.new left
   end
 
+  def is_member(user)
+    return true unless ENV['GITHUB_ORGANIZATION']
+
+    user.organization_member?(ENV['GITHUB_ORGANIZATION'])
+  end
 end
 
 FastTime::App.helpers AppHelper

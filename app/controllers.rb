@@ -12,6 +12,11 @@ FastTime::App.controllers  do
     env['warden'].authenticate!
 
     user = env['warden'].user
+
+    unless is_member(user)
+      env['warden'].logout
+      redirect '/'
+    end
     @current_user = User.find_or_create_by(github_id: user.id) do |u|
       u.name = user.login
       u.gravatar_id = user.gravatar_id
