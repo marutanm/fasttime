@@ -12,8 +12,4 @@
           - else
             %li= link_to 'login', :login
   .container
-    - if env['warden'].authenticated?
-      .row#tracking
-        %input{ :type =>"checkbox", :'data-toggle' => "switch" }
-    .row
-      = yield
+    = yield
