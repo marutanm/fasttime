@@ -52,6 +52,18 @@ FastTime::App.controllers  do
     render :list
   end
 
+  get :edit, :map => '/:year/:month/edit' do
+    redirect url(:index) unless env['warden'].authenticated?
+
+    @first_day = Date.new params[:year].to_i, params[:month].to_i, 1
+    @last_day = Date.new params[:year].to_i, params[:month].to_i, -1
+    stamps = @current_user.stamps.between(created_at: @first_day..@last_day)
+
+    @stamps = stamps.inject({}){|h, s| h[s.created_at.day] = s; h}
+
+    render :edit
+  end
+
   post :time do
     return 403 unless env['warden'].authenticated?
 

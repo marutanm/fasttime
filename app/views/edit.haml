@@ -1,0 +1,15 @@
+%h1= "EDIT: #{params[:year]}/#{params[:month]}"
+
+%table.table.table-condensed
+  - (@first_day..@last_day).each do |date|
+    - tr_class = "palette palette-peter-river" if date.saturday?
+    - tr_class = "palette palette-pomegranate" if date.sunday? or date.holiday?
+    - tr_id    = "today" if date.day == @now.to_date.day
+    %tr{class: tr_class, id: tr_id}
+      - day = date.day
+      - start_time = @stamps[day].created_at rescue 0
+      - end_time = @stamps[day].updated_at rescue 0
+      %td= day
+      %td.start_time= input_tag :text, placeholder: (start_time.strftime('%H:%M') rescue '-')
+      %td.end_time= input_tag :text, placeholder:(end_time.strftime('%H:%M') rescue '-')
+      %td= select_tag(:special, :options => ['-', '+4hours', '+8hours'], :selected => '1')
