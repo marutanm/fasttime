@@ -11,8 +11,8 @@ end
 
 # Use MONGO_URI if it's set as an environmental variable
 Mongoid::Config.sessions =
-  if ENV['MONGO_URI']
-    {default: {uri: ENV['MONGO_URI'] }}
+  if ENV['MONGOLAB_URI']
+    {default: {uri: ENV['MONGOLAB_URI'] }}
   else
     {default: {hosts: ["#{host}:#{port}"], database: database_name}}
   end
