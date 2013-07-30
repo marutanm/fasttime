@@ -2,12 +2,13 @@
   %input{ :type =>"checkbox", :'data-toggle' => "switch" }
   %h1= "#{params[:year]}/#{params[:month]}"
 
+.row#progress
   %h2= @left_time.formated
-
   .progress{:title => "#{format("%.1f", @left_time.total)}%"}
     .bar{:style=>"width:#{@left_time.total}%;"}
     .bar.bar-info{:style=>"width:#{@left_time.today}%;"}
 
+.row
   %table.table.table-condensed
     - (@first_day..@last_day).each do |date|
       - tr_class = "palette palette-peter-river" if date.saturday?
