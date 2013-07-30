@@ -10,6 +10,6 @@
       - start_time = @stamps[day].created_at rescue 0
       - end_time = @stamps[day].updated_at rescue 0
       %td= day
-      %td.start_time= input_tag :text, placeholder: (start_time.strftime('%H:%M') rescue '-')
-      %td.end_time= input_tag :text, placeholder:(end_time.strftime('%H:%M') rescue '-')
+      %td.start_time= input_tag :text, placeholder: (start_time.strftime('%H:%M') rescue '-'), name: "#{date.strftime('%Y%m%d')}_start"
+      %td.end_time= input_tag :text, placeholder:(end_time.strftime('%H:%M') rescue '-'), name: "#{date.strftime('%Y%m%d')}_end"
       %td= select_tag(:special, :options => ['-', '+4hours', '+8hours'], :selected => '1')
