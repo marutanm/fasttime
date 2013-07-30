@@ -3,10 +3,7 @@
   %h1= "#{params[:year]}/#{params[:month]}"
 
 .row#progress
-  %h2= @left_time.formated
-  .progress{:title => "#{format("%.1f", @left_time.total)}%"}
-    .bar{:style=>"width:#{@left_time.total}%;"}
-    .bar.bar-info{:style=>"width:#{@left_time.today}%;"}
+  = partial 'progress', locals: {left_time: @left_time}
 
 .row
   %table.table.table-condensed
