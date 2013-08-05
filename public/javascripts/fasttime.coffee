@@ -16,4 +16,12 @@ $ ->
     clearInterval timerId
     @
 
+  $('#edit').find('input').keypress (e) ->
+      if e.which == 13
+        data = {}
+        data['day'] = @.className
+        data['time'] = @.value
+        data['kind'] = @.name
+        $.post '', (data)
+        @
 

@@ -13,10 +13,7 @@
       - tr_id    = "today" if date.day == @now.to_date.day
       %tr{class: tr_class, id: tr_id}
         - day = date.day
-        - start_time = @stamps[day].created_at rescue 0
-        - end_time = @stamps[day].updated_at rescue 0
-        - working_time = (end_time - start_time).to_i
         %td= day
-        %td.start_time= start_time.strftime('%H:%M') rescue '-'
-        %td.end_time= end_time.strftime('%H:%M') rescue '-'
-        %td.working_time= format_time(working_time)
+        %td.start_time= @stamps[day].start_time.strftime('%H:%M') rescue '-'
+        %td.end_time= @stamps[day].end_time.strftime('%H:%M') rescue '-'
+        %td.working_time= format_time(@stamps[day].working_time) rescue '-'
