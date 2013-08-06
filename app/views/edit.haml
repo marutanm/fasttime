@@ -1,5 +1,7 @@
 %h1= "EDIT: #{params[:year]}/#{params[:month]}"
 
+%p Enter for submit
+
 %table.table.table-condensed#edit
   - (@first_day..@last_day).each do |date|
     - tr_class = "palette palette-peter-river" if date.saturday?

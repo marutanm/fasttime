@@ -5,9 +5,11 @@
   .navbar
     .navbar-inner
       .container
-        .brand FastTime
+        .brand= link_to 'FastTime', '/'
         %ul.nav.pull-right
           - if env['warden'].authenticated?
+            - if content_for?(:edit)
+              = yield_content :edit
             %li= link_to @current_user.name
           - else
             %li= link_to 'login', :login
