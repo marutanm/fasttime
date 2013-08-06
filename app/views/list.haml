@@ -17,3 +17,6 @@
         %td.start_time= @stamps[day].start_time.strftime('%H:%M') rescue '-'
         %td.end_time= @stamps[day].end_time.strftime('%H:%M') rescue '-'
         %td.working_time= format_time(@stamps[day].working_time) rescue '-'
+
+- content_for :edit do
+  %li= link_to 'edit', "/#{params[:year]}/#{params[:month]}/edit"
