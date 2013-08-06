@@ -69,8 +69,12 @@ FastTime::App.controllers  do
 
     start_time = Time.new(params[:year], params[:month], params[:day])
     end_time = Time.new(params[:year], params[:month], params[:day].to_i+1)
+
     stamp = @current_user.stamps.between(created_at:start_time..end_time).first
-    stamp[params[:kind]] = params[:time]
+    stamp ||= @current_user.stamps.create(created_at: start_time)
+
+    time = params[:time].split(':')
+    stamp[params[:kind]] = Time.new(params[:year], params[:month], params[:day], *time)
     stamp.save
 
     200
